@@ -4,7 +4,7 @@ import { ArrowRight } from 'phosphor-react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/router'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { api } from '@/lib/axios'
 import { AxiosError } from 'axios'
@@ -36,12 +36,13 @@ export default function Register() {
   })
 
   const router = useRouter()
+  const queryParams = useSearchParams()
 
   useEffect(() => {
-    if (router.query.username) {
-      setValue('username', String(router.query.username))
+    if (queryParams.get('username')) {
+      setValue('username', String(queryParams.get('username')))
     }
-  }, [router.query?.username, setValue])
+  }, [queryParams, setValue])
 
   async function handleRegister(data: RegisterFormData) {
     try {

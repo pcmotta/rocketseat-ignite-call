@@ -7,14 +7,15 @@ import {
 } from '@/pages/register/connect-calendar/styles'
 import { ArrowRight, Check } from 'phosphor-react'
 import { signIn, useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { NextSeo } from 'next-seo'
 
 export default function ConnectCalendar() {
   const session = useSession()
   const router = useRouter()
+  const queryParams = useSearchParams()
 
-  const hasAuthError = !!router.query.error
+  const hasAuthError = !!queryParams.get('error')
   const isSignedIn = session.status === 'authenticated'
 
   async function handleNavigateToNextStep() {

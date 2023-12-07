@@ -8,7 +8,7 @@ import {
 import { Calendar } from '@/components/Calendar'
 import { useState } from 'react'
 import dayjs from 'dayjs'
-import { useRouter } from 'next/router'
+import { useParams } from 'next/navigation'
 import { api } from '@/lib/axios'
 import { useQuery } from '@tanstack/react-query'
 
@@ -24,9 +24,9 @@ interface CalendarStepProps {
 export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
-  const router = useRouter()
+  const params = useParams()
 
-  const username = String(router.query.username)
+  const username = String(params?.username)
   const isDateSelected = !!selectedDate
   const selectedDateWithoutTime = selectedDate
     ? dayjs(selectedDate).format('YYYY-MM-DD')

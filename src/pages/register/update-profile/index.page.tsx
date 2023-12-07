@@ -19,7 +19,7 @@ import { ArrowRight } from 'phosphor-react'
 import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { api } from '@/lib/axios'
 import { NextSeo } from 'next-seo'
 

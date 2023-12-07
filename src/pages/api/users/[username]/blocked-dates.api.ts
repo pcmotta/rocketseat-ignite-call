@@ -48,7 +48,7 @@ export default async function handler(
     left join user_time_intervals uti on uti.week_day = weekday(date_add(s.date, interval 1 day))
     where s.user_id = ${user.id}
     and date_format(s.date, '%Y-%m') = ${`${year}-${month}`}
-    group by extract(day from s.date), ((uti.time_end_in_minutes - extract(minute from now())) / 60)
+    group by extract(day from s.date), ((uti.time_end_in_minutes - uti.time_start_in_minutes) / 60)
     having amount >= size
   `
 

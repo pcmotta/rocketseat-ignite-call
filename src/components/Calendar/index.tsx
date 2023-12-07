@@ -10,7 +10,7 @@ import {
 } from './styles'
 import { useMemo, useState } from 'react'
 import dayjs from 'dayjs'
-import { useRouter } from 'next/router'
+import { useParams } from 'next/navigation'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/axios'
 
@@ -38,9 +38,9 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
     return dayjs().set('date', 1)
   })
 
-  const router = useRouter()
+  const params = useParams()
 
-  const username = String(router.query.username)
+  const username = String(params?.username)
 
   const { data: blockedDates } = useQuery<BlockedDates>({
     queryKey: [

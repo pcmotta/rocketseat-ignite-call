@@ -5,5 +5,5 @@
   ],
   "rules": {
     "camelcase": "off"
-  },
+  }
 }
